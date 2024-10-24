@@ -1,5 +1,5 @@
 def main():
-    pass    
+    print("Welcome the Checkmakers Inventory Management System")    
 
 
 
