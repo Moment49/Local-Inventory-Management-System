@@ -6,9 +6,9 @@ def create_database(database_name):
     try:
         # Database connection setup
         mydb = mysql.connector.connect(
-            host="",
-            user="",
-            password="",
+            host="localhost",
+            user="root",
+            password="Momentum.12345",
         )
         # Setup database cursor
         mycursor = mydb.cursor()
