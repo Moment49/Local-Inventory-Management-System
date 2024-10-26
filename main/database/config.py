@@ -6,16 +6,16 @@ def create_database(database_name):
     try:
         # Database connection setup
         mydb = mysql.connector.connect(
-            host="",
-            user="",
-            password="",
+            host="localhost",
+            user="root",
+            password="Momentum.12345",
         )
         # Setup database cursor
         mycursor = mydb.cursor()
 
         # Check if database exists if not create the database
         mycursor.execute(f"""CREATE DATABASE IF NOT EXISTS {database_name}""")
-        print(f"Database: {database_name} is created")
+        print(f"Database created")
     
     except mysql.connector.Error as err:
         print(f"Error: cant connect due to {err}")

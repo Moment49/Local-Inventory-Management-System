@@ -1,3 +1,5 @@
+from .products import Product
+
 def main():
     main_prompt = "Welcome the Local Inventory Management store\n"
     main_prompt += "1 - Add new product to Inventory\n"
@@ -19,7 +21,11 @@ def main():
             isAppStart = True
         
         if program_inuput == '1':
-            pass
+            product_cat = input("Enter product category: ")
+            user_category = Product.category_add(product_cat)
+            print(f"Category added to database: {user_category}")
+            
+
             
 
 
