@@ -13,7 +13,7 @@ mycursor.execute(f"USE {DATABASE_NAME}")
 #                 price DECIMAL(13, 2),
 #                 stock_quantity BIGINT,
 #                 date_created DATETIME,
-#                 FOREIGN KEY(category_id) REFERENCES category(category_id)  
+#                 FOREIGN KEY(category_id) REFERENCES category(category_id) ON DELETE SET NULL  
 #                 )""")
 
 # Create category Table
@@ -24,11 +24,8 @@ mycursor.execute(f"USE {DATABASE_NAME}")
 
 mydb.commit()
 
-# mycursor.execute("""DROP TABLE category""")
-# mydb.commit()
 
-# ADD PRODUCT TO DB
-
+# INSERT PRODUCT TO DB
 
 
 # Close connection to the databasse  
