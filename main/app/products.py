@@ -31,10 +31,32 @@ class Product:
             print(items)
             for goods in self._name:
                 print(goods)
+        self.low_stock_alert()
     
-    def remove_product(self, category_name, product_name)
-        if category_name not in self._category:
-            if product_name not in category_name:
-                return f'product {product_name} does not exist'
+    def remove_product(self, category_name, product_name):
+        if category_name in self._category:
+            if product_name in self._category[category_name]:
+                self._category[category_name].remove(product_name)
             else:
-             self._category[category_name]
+             return f'product {product_name} does not exist'
+        else:
+            return f' category {category_name} does not exist'
+        
+    def low_stock_alert(self):
+        for cat in self._category:
+            for item in cat:
+                for price in item:
+                    if price < 5:
+                        return f' product {self._name} is below'
+    
+    def search(self, product_name, category_name):
+        try:
+            if category_name in self._category:
+                return f'category: {category_name}'
+            else:
+                return f'category does not exist'
+        except: 
+            if product_name in self._category[category_name]:
+                return f' product: {product_name}'
+            else:
+                return f'product does not exist'
