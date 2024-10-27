@@ -1,4 +1,5 @@
 from database import database
+import mysql.connector
 
 class Product:
     all_products = []
@@ -33,40 +34,16 @@ class Product:
 
                 # Append all the product
                 Product.all_products.append(product_info)
+
+                # Get the connection
+                mydb, mycursor = database.get_database_connection()
+                # Get the category from the database 
+                mycursor.execute("""SELECT * FROM category WHERE category_name = %s""", category)
+                cate = mycursor.fetchone()
+                cate_id = cate[0]
+                # Add product to db
+                database.Insert_product(self._name, self._price, cate_id, self.stock_quantity)
                 return product_info
      
         
         
-        
-
-
-
-# print(Product.all_products)
-    # def add_category(self, category):
-    #     self._category = {}
-        
-    #     if category_name in self._category:
-    #         return f'category {category_name} already exist'
-    #     else:
-    #         self._category[category_name] = {}
-            
-    # def add_product(self, category_name, name, price, stock_quantity):
-    #     if category_name not in self._category:
-    #         return f' category {category_name} does not exist, pls create it'
-    #     else:  
-    #         self._category[category_name] [self._name] = {self._price: price, self.stock_quantity: stock_quantity}
-    #         return f'product {name} has been added to category {category_name}'
-        
-
-    # def view_product(self):
-    #     for items in  self._category:
-    #         print(items)
-    #         for goods in self._name:
-    #             print(goods)
-    
-    # def remove_product(self, category_name, product_name):
-    #     if category_name not in self._category:
-    #         if product_name not in category_name:
-    #             return f'product {product_name} does not exist'
-    #         else:
-    #          self._category[category_name]

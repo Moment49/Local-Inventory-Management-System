@@ -25,7 +25,14 @@ def main():
             user_category = Product.category_add(product_cat)
             print(f"Category added to database: {user_category}")
             
+            # Add Product
+            product_name = input("Enter product name: ")
+            product_price = input("Enter product price: ")
+            stock_quantity = input("Enter stock quantity: ")
 
+            product_user = Product(product_name, product_price, stock_quantity)
+            product_info = product_user.add_product(user_category)
+            print(product_info)
             
 
 
