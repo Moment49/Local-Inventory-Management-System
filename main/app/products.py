@@ -38,7 +38,7 @@ class Product:
                 # Get the connection
                 mydb, mycursor = database.get_database_connection()
                 # Get the category from the database 
-                mycursor.execute("""SELECT * FROM category WHERE category_name = %s""", category)
+                mycursor.execute("""SELECT * FROM category WHERE category_name = %s""", (category, ))
                 cate = mycursor.fetchone()
                 cate_id = cate[0]
                 # Add product to db

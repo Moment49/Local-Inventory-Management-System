@@ -11,7 +11,7 @@ def get_database_connection():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password=DATABASE_PASSWORD,
+        password='Momentum.12345',
         database=DATABASE_NAME
     )
     # Setup database cursor
@@ -23,6 +23,7 @@ def get_database_connection():
 
 
 # Create category Products
+# mydb, mycursor = get_database_connection()
 # mycursor.execute("""CREATE TABLE IF NOT EXISTS products(
 #                 product_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 #                 name VARCHAR(255) NOT NULL,
@@ -39,13 +40,6 @@ def get_database_connection():
 #                  category_name VARCHAR(100) UNIQUE
 #                  )""")
 
-# mydb, mycursor = get_database_connection()
-
-# # mycursor.execute("DROP TABLE category")
-# # mycursor.execute("DROP TABLE products")
-# mydb.commit()
-# mycursor.close()
-# mydb.close()
 
 # INSERT Category TO DB
 def Insert_cat(cat:str):
