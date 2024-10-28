@@ -13,9 +13,10 @@ def get_database_connection():
         user="root",
         password='Momentum.12345',
         database=DATABASE_NAME
+       
     )
     # Setup database cursor
-    mycursor = mydb.cursor()
+    mycursor = mydb.cursor(dictionary=True)
     return mydb, mycursor
 
 
@@ -63,4 +64,16 @@ def Insert_product(name, price, cat_id, stock_qua):
     mycursor.close()
     mydb.close()
 
+def view_all_products():
+    mydb, mycursor = get_database_connection()
+    mycursor.execute(f"USE {DATABASE_NAME}")
+    mycursor.execute("""SELECT name, price, stock_quantity, category.category_name 
+                     FROM products
+                     INNER JOIN category ON products.category_id = category.category_id
+                      """)
+    all_products = mycursor.fetchall()
+    mydb.commit()
+    mycursor.close()
+    mydb.close()
+    return all_products
 
