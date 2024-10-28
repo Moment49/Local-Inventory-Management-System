@@ -9,8 +9,8 @@ def main():
     main_prompt += "3 - Update a Product in Inventory by name and price\n"
     main_prompt += "4 - Delete a Product from inventory\n"
     main_prompt += "5 - Generate Product alert based on stock level\n"
-    main_prompt += "6 - Search for a Product in Inventory (name or category)\n"
-    main_prompt += "7 - Sort Products in Inventory (price or stock quantity)\n"
+    main_prompt += "6 - Search for a Product in Inventory by name\n"
+    main_prompt += "7 - Sort Products in Inventory by stock quantity \n"
     main_prompt += "8 - Enter (exit or q) to close application\n\n"
     main_prompt += "Select an action to perform: "
 
@@ -29,8 +29,6 @@ def main():
             # Get the category from the database 
             mycursor.execute("""SELECT * FROM category WHERE category_name = %s""", (product_cat, ))
             cate = mycursor.fetchone()
-            print(cate)
-
             if not cate:
                 user_category = Product.category_add(product_cat.title())
                 # Get user Product 
@@ -38,9 +36,10 @@ def main():
                 product_price = input("Enter product price: ")
                 stock_quantity = input("Enter stock quantity: ")
 
+                # Create a product Instance
+                product_user = Product()
                 # Add product
-                product_user = Product(product_name, product_price, stock_quantity)
-                product_info = product_user.add_product(user_category)
+                product_info = product_user.add_product(user_category,product_name, product_price, stock_quantity)
                 print(product_info)
             else:
                 user_cate = cate['category_name']
@@ -50,9 +49,11 @@ def main():
                 product_name = input("Enter product name: ")
                 product_price = input("Enter product price: ")
                 stock_quantity = input("Enter stock quantity: ")
-                # Add Product
-                product_user = Product(product_name, product_price, stock_quantity)
-                product_info = product_user.add_product(user_cate)
+               
+                # Create a product instance
+                product = Product()
+                 # Add Product
+                product_info = product_user.add_product(user_cate, product_name, product_price, stock_quantity)
                 print(product_info)
 
         
@@ -65,9 +66,43 @@ def main():
             old_name = input("Enter product name to update: ")
             new_prod_name = input("Enter new product name: ")
             new_price = float(input("Enter new product price: "))
-            Product.update_product(old_name, new_prod_name, new_price)
-            
+            # Create the Product instance
+            product = Product()
+            # Update the product
+            product.update_product(old_name, new_prod_name, new_price)
+        
+        elif program_inuput == '4':
+            print("Select Product to Delete")
+            # Reture a list of products so user can see what product to delete
+            Product.view_products()
+            user_prod_del = input("Enter a Product name you want to delete: ")
+            message = input(f"Are you sure you want to delete {user_prod_del} (yes or no): ")
+            if message == 'yes':
+                # Create the Product instance
+                product= Product()
+                # Delete a product
+                product.delete_product(user_prod_del)
+            elif message == 'no':
+                break
+        
+        elif program_inuput == '5':
+            print("Notification for stock level of all products")
+            Product.generate_stock_alert()
+        
+        elif program_inuput == '6':
+            # Create the Product instance
+            product = Product()
+            product_name = input("Enter product name to search: ")
+            # Search product name in Inventory
+            print(f"Search Results for: {product_name}\n")
+            product.search_product(product_name)
 
+        elif program_inuput == '7':
+            # Create the Product instance
+            product = Product()
+            # Sort Products
+            print("Sort Porducts by stock level in Descending Order")
+            product.sort_product()
 
 
 

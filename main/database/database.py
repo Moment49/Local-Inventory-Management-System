@@ -1,7 +1,5 @@
 from .config import  DATABASE_NAME, DATABASE_PASSWORD
 from datetime import datetime
-import os
-from dotenv import load_dotenv
 import mysql.connector
 
 
@@ -18,9 +16,6 @@ def get_database_connection():
     # Setup database cursor
     mycursor = mydb.cursor(dictionary=True)
     return mydb, mycursor
-
-
-
 
 
 # Create category Products
