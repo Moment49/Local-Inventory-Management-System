@@ -14,7 +14,7 @@ def create_database(database_name):
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password='Momentum.12345',
+            password='',
         )
         # Setup database cursor
         mycursor = mydb.cursor()

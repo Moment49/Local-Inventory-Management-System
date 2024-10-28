@@ -9,7 +9,7 @@ def get_database_connection():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password='Momentum.12345',
+        password='',
         database=DATABASE_NAME
        
     )
