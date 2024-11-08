@@ -11,18 +11,18 @@ def main():
     main_prompt += "5 - Generate Product alert based on stock level\n"
     main_prompt += "6 - Search for a Product in Inventory by name\n"
     main_prompt += "7 - Sort Products in Inventory by stock quantity \n"
-    main_prompt += "8 - Enter (exit or q) to close application\n\n"
+    main_prompt += "Enter (exit or q) to close application\n\n"
     main_prompt += "Select an action to perform: "
 
     isAppStart = False
 
     while not isAppStart:
-        program_inuput = input(main_prompt)
+        program_input = input(main_prompt)
 
-        if program_inuput == 'exit' or '8' or 'q' or 'Q':
+        if program_input == 'exit' or program_input == 'q' or program_input == 'Q':
             isAppStart = True
         
-        if program_inuput == '1':
+        if program_input == '1':
             product_cat = input("Enter product category: ")
             # Get the connection
             mydb, mycursor = database.get_database_connection()
@@ -57,11 +57,11 @@ def main():
                 print(product_info)
 
         
-        elif program_inuput == '2':
+        elif program_input == '2':
             # Call the view products methods
             Product.view_products()
         
-        elif program_inuput == '3':
+        elif program_input == '3':
             print("Update a product by name and price:")
             old_name = input("Enter product name to update: ")
             new_prod_name = input("Enter new product name: ")
@@ -71,7 +71,7 @@ def main():
             # Update the product
             product.update_product(old_name, new_prod_name, new_price)
         
-        elif program_inuput == '4':
+        elif program_input == '4':
             print("Select Product to Delete")
             # Reture a list of products so user can see what product to delete
             Product.view_products()
@@ -85,11 +85,11 @@ def main():
             elif message == 'no':
                 break
         
-        elif program_inuput == '5':
+        elif program_input == '5':
             print("Notification for stock level of all products")
             Product.generate_stock_alert()
         
-        elif program_inuput == '6':
+        elif program_input == '6':
             # Create the Product instance
             product = Product()
             product_name = input("Enter product name to search: ")
@@ -97,7 +97,7 @@ def main():
             print(f"Search Results for: {product_name}\n")
             product.search_product(product_name)
 
-        elif program_inuput == '7':
+        elif program_input == '7':
             # Create the Product instance
             product = Product()
             # Sort Products
